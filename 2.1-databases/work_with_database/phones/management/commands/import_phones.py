@@ -19,6 +19,7 @@ class Command(BaseCommand):
                 image=phone['image'],
                 price=phone['price'],
                 release_date=phone['release_date'],
-                lte_exists=phone['lte_exists']
-            )
+                lte_exists=phone['lte_exists'],
+                slug=phone['name'].lower().replace(' ', '_'),
+            ).save()
 
