@@ -12,15 +12,17 @@ def show_catalog(request):
     sort = request.GET.get('sort')
 
     if sort == 'name':
-        phones_all = Phone.objects.all().order_by('name')
-    if sort == 'min_price':
-        phones_all = Phone.objects.all().order_by('price')
-    if sort == 'max_price':
-        phones_all = Phone.objects.all().order_by('-price')
+        phones = Phone.objects.all().order_by('name')
+    elif sort == 'min_price':
+        phones = Phone.objects.all().order_by('price')
+    elif sort == 'max_price':
+        phones = Phone.objects.all().order_by('-price')
     else:
-        phones_all = Phone.objects.all()
+        phones = Phone.objects.all()
 
-    context = {'phone': phones_all}
+    context = {
+        'phones': phones,
+    }
     return render(request, template, context)
 
 
